@@ -167,6 +167,18 @@
         font-size: 28px;
       }
 
+      .logo-brand {
+        height: 50px;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo-brand img {
+        height: 100%;
+        width: auto;
+        max-width: 180px;
+      }
+
       .header-right {
         display: flex;
         gap: 20px;
@@ -525,7 +537,7 @@
           const header = document.createElement("div");
           header.className = "header";
           header.innerHTML = `
-          <h1>📋 Taskrix</h1>
+          <div class="logo-brand"><img src="assets/logo/taskrix-logo.png" alt="Taskrix"></div>
           <div class="header-right">
             <div class="user-info">
               Welcome, <strong>${this.currentUser.fullName}</strong>
