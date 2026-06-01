@@ -36,20 +36,13 @@ const connectDB = async () => {
   try {
     const mongoUrl =
       process.env.MONGODB_URI || "mongodb://localhost:27017/taskrix";
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(mongoUrl, {
+      serverSelectionTimeoutMS: 5000,
+    });
     console.log("MongoDB connected");
   } catch (error) {
-    console.error("MongoDB connection error:", error);
-    console.log("Falling back to an in-memory MongoDB (for development)");
-    try {
-      const mongod = await MongoMemoryServer.create();
-      const uri = mongod.getUri();
-      await mongoose.connect(uri);
-      console.log("Connected to in-memory MongoDB");
-    } catch (memErr) {
-      console.error("Failed to start in-memory MongoDB:", memErr);
-      process.exit(1);
-    }
+    console.error("MongoDB connection error:", error.message);
+    console.log("Warning: Running in demo mode without persistent database");
   }
 };
 
