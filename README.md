@@ -1,6 +1,11 @@
-# Taskrix
+![Taskrix Logo](assets/logo/taskrix-logo.png)
 
 A full-stack task management application with user authentication and three-stage task workflow.
+
+## 🔗 Live Links
+
+- **Frontend (Live)**: https://taskrix-app.vercel.app
+- **GitHub Repository**: https://github.com/akshay-dev47/-taskrix-app
 
 ## 📸 Features
 
