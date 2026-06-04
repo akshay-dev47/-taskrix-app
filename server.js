@@ -80,12 +80,21 @@ app.use("/api/auth", requireDatabase, authRoutes);
 app.use("/api/tasks", requireDatabase, authMiddleware, taskRoutes);
 
 // Health check
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "OK",
-    database:
-      mongoose.connection.readyState === 1 ? "connected" : "not connected",
-  });
+app.get("/api/health", async (req, res) => {
+  try {
+    await connectDB();
+    res.json({
+      status: "OK",
+      database: "connected",
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: "OK",
+      database: "not connected",
+      message:
+        "Check MONGODB_URI in Vercel and allow network access in MongoDB Atlas.",
+    });
+  }
 });
 
 app.get("/favicon.ico", (req, res) => {
