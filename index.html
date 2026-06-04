@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Taskrix</title>
+    <link rel="icon" type="image/png" href="assets/logo/taskrix-logo.png" />
     <style>
       * {
         margin: 0;
@@ -427,7 +428,13 @@
     <div id="root"></div>
 
     <script>
-      const API_URL = "https://taskrix-2juko7qpn-akshay-dev47s-projects.vercel.app/api";
+      const API_URL =
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+          ? "http://localhost:5000/api"
+          : window.location.hostname === "taskrix-app.vercel.app"
+          ? "https://taskrix-2juko7qpn-akshay-dev47s-projects.vercel.app/api"
+          : `${window.location.origin}/api`;
 
       class TaskManager {
         constructor() {
